@@ -74,7 +74,17 @@ public class Concurso implements Serializable {
     private Usuario usuarioAtualizacao;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "concurso")
     private List<Publicacao> publicacaoList;
-
+    @Column(name = "inscricao_online")
+    private boolean inscricaoOnline;
+    @Column(name = "inscricao_presencial")
+    private boolean inscricaoPresencial;
+    @Column(name = "exibir_opcao_afro")
+    private boolean exibirOpcaoAfro;
+    @Column(name = "id_situacao")
+    private Integer idSituacao;
+    @Column(name = "nro_ini_inscricao_online")
+    private Integer nroIniInscricaoOnline;    
+    
     public Concurso() {
     }
 
@@ -199,6 +209,46 @@ public class Concurso implements Serializable {
         this.publicacaoList = publicacaoList;
     }
 
+    public boolean isInscricaoOnline() {
+        return inscricaoOnline;
+    }
+
+    public void setInscricaoOnline(boolean inscricaoOnline) {
+        this.inscricaoOnline = inscricaoOnline;
+    }
+
+    public boolean isInscricaoPresencial() {
+        return inscricaoPresencial;
+    }
+
+    public void setInscricaoPresencial(boolean inscricaoPresencial) {
+        this.inscricaoPresencial = inscricaoPresencial;
+    }
+
+    public boolean isExibirOpcaoAfro() {
+        return exibirOpcaoAfro;
+    }
+
+    public void setExibirOpcaoAfro(boolean exibirOpcaoAfro) {
+        this.exibirOpcaoAfro = exibirOpcaoAfro;
+    }
+
+    public Integer getIdSituacao() {
+        return idSituacao;
+    }
+
+    public void setIdSituacao(Integer idSituacao) {
+        this.idSituacao = idSituacao;
+    }
+
+    public Integer getNroIniInscricaoOnline() {
+        return nroIniInscricaoOnline;
+    }
+
+    public void setNroIniInscricaoOnline(Integer nroIniInscricaoOnline) {
+        this.nroIniInscricaoOnline = nroIniInscricaoOnline;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -223,5 +273,5 @@ public class Concurso implements Serializable {
     public String toString() {
         return "br.com.gcp.model.Concurso[ id=" + id + " ]";
     }
-    
+
 }
