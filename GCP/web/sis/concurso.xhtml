@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 template="./template.xhtml"
+                 xmlns:p="http://primefaces.org/ui"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="conteudo">
+        <h:form id="formcrud">
+
+            <p:panel id="panellist" header="Cadastros > Concurso > Lista" rendered="#{concursoControl.status.equals('list')}">
+                <fieldset class="espacamento-top-bot">
+                    <legend>Filtros de Pesquisa</legend>
+                    <h:panelGrid columns="3">
+                        <h:outputText value="Código: "/>
+                        <p:inputText value="#{concursoControl.filtroCodigo}" size="10"/>
+                        <h:outputText value=""/>                    
+                        <h:outputText value="Titulo: "/>
+                        <p:inputText value="#{concursoControl.filtroTitulo}" size="50"/>                        
+                        <p:commandButton icon="botao-procurar" action="#{concursoControl.filtro}" update="tabela" value="&nbsp;Procurar"/>
+                    </h:panelGrid>
+                </fieldset>
+                <p:dataTable id="tabela" var="item" value="#{concursoControl.listaConcurso}"
+                             paginatorPosition="bottom" rowsPerPageTemplate="4,8,12,16,20,50"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             paginator="true" rows="8" emptyMessage="Nenhum registro encontrado!" >
+                    <p:column sortBy="#{item.id}" style="width: 70px;">
+                        <f:facet name="header">
+                            <h:outputText value="Código"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>                    
+                    <p:column sortBy="#{item.titulo}">
+                        <f:facet name="header">
+                            <h:outputText value="Titulo"/>
+                        </f:facet>
+                        <h:outputText value="#{item.titulo}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.dtAtualizacao}" styleClass="coluna-data-hora">
+                        <f:facet name="header">
+                            <h:outputText value="Atualização"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtAtualizacao}">
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column styleClass="coluna-botao">
+                        <f:facet name="header">
+                            <h:outputText value=" "/>
+                        </f:facet>
+                        <p:commandLink  action="#{concursoControl.prepareView(item)}" title="Visualizar" update="@form" >
+                            <h:graphicImage alt="DIS" value="#{resource['imgpadrao/display-20x20.png']}" />
+                        </p:commandLink>
+                    </p:column>
+                    <p:column styleClass="coluna-botao">
+                        <f:facet name="header">
+                            <h:outputText value=" "/>
+                        </f:facet>
+                        <p:commandLink  action="#{concursoControl.prepareUpdate(item)}" title="Atualizar" update="@form" >
+                            <h:graphicImage alt="UPD" value="#{resource['imgpadrao/update-20x20.png']}" />
+                        </p:commandLink>
+                    </p:column>
+                    <p:column styleClass="coluna-botao">
+                        <f:facet name="header">
+                            <h:outputText value=" "/>
+                        </f:facet>
+                        <p:commandLink  action="#{concursoControl.prepareDelete(item)}"  title="Excluir" update="@form" >
+                            <h:graphicImage alt="DEL" value="#{resource['imgpadrao/delete-20x20.png']}" />
+                        </p:commandLink>
+                    </p:column>
+                </p:dataTable>
+                <br/>
+                <p:commandButton value="&nbsp;Incluir" icon="botao-novo" action="#{concursoControl.prepareCreate}" update="@form" title="Criar Novo"/>
+            </p:panel>
+
+            <p:panel id="panelcreate" header="Cadastros > Concurso > Novo" rendered="#{concursoControl.status.equals('create')}">
+                <h:panelGrid columns="2" class="espacamento-top-bot">
+                    <h:outputText value="Título:" /><p:inputText  value="#{concursoControl.concurso.titulo}" size="100" maxlength="100" />
+                    <h:outputText value="Inscrições: "/> 
+                    <h:panelGroup>                      
+                        <p:calendar value="#{concursoControl.concurso.dtInscricaoInicio}" locale="pt" pattern="dd/MM/yyyy HH:mm"  size="18" maxlength="16"/>&nbsp;
+                        <h:outputText value="até: "/>
+                        <p:calendar value="#{concursoControl.concurso.dtInscricaoFim}" locale="pt" pattern="dd/MM/yyyy HH:mm"  size="18" maxlength="16"/>                     
+                    </h:panelGroup>
+                    <h:outputText value="Vcto Boleto: "/>                   
+                    <p:calendar value="#{concursoControl.concurso.dtVencBoleto}" locale="pt" pattern="dd/MM/yyyy"  size="10" maxlength="10"/>&nbsp;                    
+                </h:panelGrid>
+
+                <h:panelGrid columns="2">
+                    <p:commandButton icon="botao-novo" value="&nbsp;Incluir" action="#{concursoControl.create}" update="@form" />
+                    <p:commandButton icon="botao-voltar" value="&nbsp;Voltar" action="#{concursoControl.prepareList}" update="@form" immediate="true" />
+                </h:panelGrid>
+            </p:panel>
+
+            <p:panel id="panelupdate" header="Cadastros > Concurso > Atualizar" rendered="#{concursoControl.status.equals('update')}">
+                <h:panelGrid columns="2" class="espacamento-top-bot">
+                    <h:outputText value="Título:" /><p:inputText  value="#{concursoControl.concurso.titulo}" size="100" maxlength="100" />
+
+                    <h:outputText value=" " />
+                </h:panelGrid>
+
+                <h:panelGrid columns="2">
+                    <p:commandButton icon="botao-update" value="&nbsp;Atualizar" action="#{concursoControl.update}" update="@form"  />
+                    <p:commandButton icon="botao-voltar" value="&nbsp;Voltar" action="#{concursoControl.prepareList}" update="@form" immediate="true" />
+                </h:panelGrid>
+            </p:panel>       
+
+            <p:panel id="paneldelete" header="Cadastros > Concurso > Excluir" rendered="#{concursoControl.status.equals('delete')}">
+                <h:panelGrid columns="2" class="espacamento-top-bot">
+                    <h:outputText value="Nome:" /><p:inputText  value="#{concursoControl.concurso.titulo}" size="60" maxlength="100" readonly="true"/>
+                </h:panelGrid>
+                <h:panelGrid columns="2" class="espacamento-top-bot">
+                    <h:outputText value="Data Inclusão:" />
+                    <h:outputText value="#{concursoControl.usuario.dtInclusao}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="Usuário Inclusão" /><h:outputText value="#{concursoControl.usuario.usuarioInclusao.nome}" />
+                    <h:outputText value="Data Atualização:" /><h:outputText value="#{concursoControl.usuario.dtAtualizacao}" >
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="Usuário Atualização:" /><h:outputText value="#{concursoControl.usuario.usuarioAtualizacao.nome}" />
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Excluir" icon="botao-delete" action="#{concursoControl.delete}" update="@form"  />
+                    <p:commandButton value="Voltar" icon="botao-voltar" action="#{concursoControl.prepareList}" update="@form"/>
+                </h:panelGrid>
+            </p:panel>            
+
+        </h:form>
+    </ui:define>
+</ui:composition>

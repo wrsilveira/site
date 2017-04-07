@@ -39,8 +39,8 @@ public class Concurso implements Serializable {
     private Integer id;
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "descricao", nullable = false, length = 100)
-    private String descricao;
+    @Column(name = "titulo", nullable = false, length = 100)
+    private String titulo;
     @NotNull
     @Column(name = "dt_inscricao_inicio", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -66,8 +66,8 @@ public class Concurso implements Serializable {
     private List<Prova> provaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "concurso")
     private List<Cargo> cargoList;
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
+    @ManyToOne
     private Cliente cliente;
     @JoinColumn(name = "id_usuario_atualizacao", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
@@ -82,9 +82,9 @@ public class Concurso implements Serializable {
         this.id = id;
     }
 
-    public Concurso(Integer id, String descricao, Date dtInscricaoInicio, Date dtInscricaoFim, Date dtVencBoleto, Date dtAtualizacao) {
+    public Concurso(Integer id, String titulo, Date dtInscricaoInicio, Date dtInscricaoFim, Date dtVencBoleto, Date dtAtualizacao) {
         this.id = id;
-        this.descricao = descricao;
+        this.titulo = titulo;
         this.dtInscricaoInicio = dtInscricaoInicio;
         this.dtInscricaoFim = dtInscricaoFim;
         this.dtVencBoleto = dtVencBoleto;
@@ -99,12 +99,12 @@ public class Concurso implements Serializable {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public Date getDtInscricaoInicio() {

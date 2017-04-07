@@ -36,8 +36,8 @@ public class Publicacao implements Serializable {
     private Integer id;
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "descricao", nullable = false, length = 50)
-    private String descricao;
+    @Column(name = "titulo", nullable = false, length = 50)
+    private String titulo;
     @NotNull
     @Column(name = "dt_inicio_publicacao", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -77,9 +77,9 @@ public class Publicacao implements Serializable {
         this.id = id;
     }
 
-    public Publicacao(Integer id, String descricao, Date dtInicioPublicacao, String link, boolean indicadorArquivo, Date dtAtualizacao, boolean indicadorProtegida) {
+    public Publicacao(Integer id, String titulo, Date dtInicioPublicacao, String link, boolean indicadorArquivo, Date dtAtualizacao, boolean indicadorProtegida) {
         this.id = id;
-        this.descricao = descricao;
+        this.titulo = titulo;
         this.dtInicioPublicacao = dtInicioPublicacao;
         this.link = link;
         this.indicadorArquivo = indicadorArquivo;
@@ -95,12 +95,12 @@ public class Publicacao implements Serializable {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public Date getDtInicioPublicacao() {

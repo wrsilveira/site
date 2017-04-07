@@ -88,24 +88,24 @@
                             <p:menuitem value="&nbsp;&nbsp;Perfis do Usuário" url="/sis/perfilUsuario.xhtml" icon="icon-usuario-perfil" rendered="#{sessionControl.temPerfil('Configurador') or sessionControl.temPerfil('Administrador')}" />
                         </p:submenu>    
 
-                        <p:submenu label="&nbsp;&nbsp;&nbsp;Tabelas de Apoio&nbsp;&nbsp;&nbsp;" rendered="#{sessionControl.temPerfil('Visualizador')}">
+                        <p:submenu label="&nbsp;&nbsp;&nbsp;Tabelas de Apoio&nbsp;&nbsp;&nbsp;" rendered="true">
                             <p:menuitem style="width: 150px !important;" value="&nbsp;&nbsp;Tipo Propositura" url="/sis/tipoPropositura.xhtml" icon="icon-tipo-propositura" />
                             <p:menuitem style="width: 150px !important;" value="&nbsp;&nbsp;Tipo Despacho" url="/sis/tipoDespacho.xhtml" icon="icon-usuario-perfil" />
                             <p:menuitem style="width: 150px !important;" value="&nbsp;&nbsp;Setor" url="/sis/setor.xhtml" icon="icon-setor" />
                             <p:menuitem style="width: 150px !important;" value="&nbsp;&nbsp;Entidades" url="/sis/configuracao.xhtml" icon="icon-configuracao" />
                         </p:submenu>
 
-                        <p:submenu label="&nbsp;&nbsp;Cadastros&nbsp;&nbsp;" rendered="#{sessionControl.temPerfil('Visualizador')}" >
-                            <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Proposituras&nbsp;&nbsp;" url="/sis/propositura.xhtml" icon="icon-manutencao" />                                  
+                        <p:submenu label="&nbsp;&nbsp;Cadastros&nbsp;&nbsp;" rendered="true" >
+                            <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Concurso&nbsp;&nbsp;" url="/sis/concurso.xhtml" icon="icon-manutencao" />                                  
                             <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Autor&nbsp;&nbsp;" url="/sis/autor.xhtml" icon="icon-autor" /> 
                             <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Ofício&nbsp;&nbsp;" url="/sis/oficio.xhtml" icon="icon-oficio"  />  
                         </p:submenu>
 
-                        <p:submenu label="&nbsp;&nbsp;Recebimentos&nbsp;&nbsp;" rendered="#{sessionControl.temPerfil('Executor')}" >
+                        <p:submenu label="&nbsp;&nbsp;Recebimentos&nbsp;&nbsp;" rendered="true" >
                             <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Proposituras&nbsp;&nbsp;" url="/sis/recebimentosPropositura.xhtml" icon="icon-receber" />                      
                         </p:submenu>
 
-                        <p:submenu label="&nbsp;&nbsp;Relatórios&nbsp;&nbsp;" rendered="#{sessionControl.temPerfil('Visualizador')}" >
+                        <p:submenu label="&nbsp;&nbsp;Relatórios&nbsp;&nbsp;" rendered="true" >
                             <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Encaminhamento&nbsp;" url="/sis/relEncaminhamento.xhtml" icon="icon-relatorio"  />                              
                             <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Processo Sem Retorno&nbsp;&nbsp;" url="/sis/relProcessoSemRetorno.xhtml" icon="icon-relatorio"  />                                  
                             <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Resumo de Proposições&nbsp;&nbsp;" url="/sis/relResumoProposituras.xhtml" icon="icon-relatorio"  />                             
@@ -113,8 +113,6 @@
                     </p:menubar>
                 </h:form>
             </ui:insert>
-
-
 
             <div id="conteudo" style="min-height: 500px;">
                 <ui:insert name="conteudo">

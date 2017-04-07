@@ -34,18 +34,19 @@ public class LoginControl implements Serializable {
     private TodosUsuarios todosUsuarios;
     @EJB
     private TodosPerfisAcesso todosPerfisAcesso;
-    
+
     private Usuario usuario = new Usuario();
 
     private void autorizaPaginas() {
-        
         sessao.adicionaPaginaAutorizada("/sis/principal.xhtml");
         sessao.adicionaPaginaAutorizada("/sis/trocarSenhaSucesso.xhtml");
         sessao.adicionaPaginaAutorizada("/sis/principal.xhtml");
         sessao.adicionaPaginaAutorizada("/sis/usuario.xhtml");
         sessao.adicionaPaginaAutorizada("/sis/perfilUsuario.xhtml");
+
+        sessao.adicionaPaginaAutorizada("/sis/concurso.xhtml");
     }
-   
+
     public String executarLogin() {
         Usuario usu = todosUsuarios.buscaPorAcessoAtivo(usuario.getNomeAcesso());
         if (usu != null) {
@@ -73,8 +74,8 @@ public class LoginControl implements Serializable {
         }
         JsfUtil.addErrorMsg("Erro ao tentar efetuar login! Tente novamente.");
         return null;
-    }    
-    
+    }
+
     public String limpaSessao() {
         HttpSession s = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         s.invalidate();

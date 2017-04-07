@@ -5,8 +5,7 @@
                  template="./template.xhtml"
                  xmlns:p="http://primefaces.org/ui"
                  xmlns:h="http://java.sun.com/jsf/html"
-                 xmlns:f="http://java.sun.com/jsf/core"
-                 xmlns:coderp="http://java.sun.com/jsf/composite/coderp" >
+                 xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="conteudo">
         <h:form id="formcrud">
             <p:panel id="panelupdate" header="Controle de Acesso > Usuários > Atualizar" rendered="#{usuarioControl.status.equals('update')}" >
@@ -237,5 +236,4 @@
             </p:panel>
         </h:form>
     </ui:define>
-    
 </ui:composition>
