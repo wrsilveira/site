@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="conteudo">
+        <h:form id="formcrud">
+            <p:panel id="panellist" header="Controle de Acesso > Perfis de Usuário">
+                <br/>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Usuário:" />
+                    <p:selectOneMenu filter="true" value="#{perfilAcessoUsuarioControl.usuario}" converter="genericConverter">
+                        <f:selectItem itemLabel="--" itemValue=""/>
+                        <f:selectItems value="#{perfilAcessoUsuarioControl.listaUsuario}"/>
+                        <p:ajax event="change" listener="#{perfilAcessoUsuarioControl.prepareUpdate}" update="formcrud:perfisList" />
+                    </p:selectOneMenu>
+                    <h:outputText value="Perfis:" />
+                    <p:pickList id="perfisList" value="#{perfilAcessoUsuarioControl.dualListPerfil}" var="perfil"
+                                itemLabel="#{perfil}" itemValue="#{perfil}" converter="genericConverter" converterMessage="Erro de conversao"
+                                addAllLabel="Adicionar Todos" removeAllLabel="Remover Todos" removeLabel="Remover" addLabel="Adicionar" />
+                    <h:outputText value=" " />
+                </h:panelGrid>
+                <p:commandButton value="Atualizar" icon="botao-update" action="#{perfilAcessoUsuarioControl.update}" update="@form" title="Salvar" rendered="#{sessionControl.temPerfil('Configurador')}"/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>

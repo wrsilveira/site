@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Avaliação de Limpeza</title> 
+        <h:outputStylesheet name="estilo.css" />
+    </h:head>
+    <h:body>
+        <f:view contentType="text/html">
+            <h:form>
+                <div class="div-topo">
+                    <div class="div-topo-logo-esquerda">
+                        <h:graphicImage value="#{resource['icones/logo-esquerda.png']}"/>
+                    </div>
+                    <div class="div-topo-titulo-esquerda">
+                        <h:panelGroup>
+                            <h:outputText value="XXXXXX xxxxxx" styleClass="topo-titulo-cliente-pequeno"/>
+                            <br/>
+                            <h:outputText value="Xxxxxxxx" styleClass="topo-titulo-cliente-grande"/>
+                            <br/>
+                            <h:panelGroup rendered="#{sessionControl.usuario!=null}">
+                                <div class="div-login-local">
+                                    <h:outputText value="#{sessionControl.usuario.nome}" />
+                                    <h:outputText value=" (" />
+                                    <h:outputText value="#{sessionControl.usuario.nomeAcesso}" />
+                                    <h:outputText value=") " />
+                                    <h:outputText value=" / " />
+                                    <h:outputText value="#{sessionControl.usuario.nomeAcesso}" /> 
+                                </div>                           
+                            </h:panelGroup>
+                        </h:panelGroup>
+                    </div>
+                    <div class="div-topo-logo-direita">
+                        <h:graphicImage value="#{resource['icones/logo-direita.png']}"/>
+                    </div>
+                    <div class="div-topo-titulo-direita">
+                        <h:panelGroup>
+                            <h:outputText value="Xxxxxx xxxxx" styleClass="topo-titulo-sistema"/>
+                            <br/>
+                            <h:outputText value="JXXX" styleClass="topo-codigo-sistema"/>
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </h:form>
+            <h:form id="formcrud">
+                <div style="text-align: center;">
+                    <br/>
+                    <br/>
+                    <h1>Sua senha foi alterada com sucesso!</h1>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p:commandButton action="#{loginControl.limpaSessao()}" ajax="false" value="Clique aqui para logar no sistema"/>
+                </div>
+            </h:form>
+            <br/>
+            <div class="estiloRodape">
+                <h:graphicImage value="#{resource['imgpadrao/logo_rodape.png']}"/>
+            </div>
+        </f:view>
+    </h:body>
+</html>
+

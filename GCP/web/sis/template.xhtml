@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <title>Cadastro de Proposições</title>        
+        <h:outputStylesheet name="estilo.css" />        
+        <h:outputScript name="script.js"/>   
+    </h:head>
+
+    <h:body>
+        <f:view contentType="text/html">
+
+            <ui:insert name="cabecalho">
+                <h:form style="margin-bottom: 5px;" prependId="false">
+                    <p:dialog closeOnEscape="true" id="contact" widgetVar="contato" header="CONTATOS DO SISTEMA" modal="true" width="700" height="450" dynamic="true">
+                        <ui:include src="/sis/contato.xhtml"/>
+                    </p:dialog>
+                    <p:dialog closeOnEscape="true" id="about" widgetVar="sobre" header="SOBRE O SISTEMA" modal="true" width="700" height="480" dynamic="true">
+                        <ui:include src="/sis/sobre.xhtml"/>
+                    </p:dialog>
+                    <p:dialog closeOnEscape="true" id="help" widgetVar="ajuda" header="AJUDA DO SISTEMA" modal="true" width="720" height="500" dynamic="true">
+                        <ui:include src="/sis/ajuda.xhtml"/>
+                    </p:dialog>
+
+                    <p:growl autoUpdate="true"/>
+
+                    <div class="div-topo">
+                        <div class="div-topo-logo-esquerda">
+                            <h:graphicImage value="#{resource['icones/logo-esquerda.png']}"/>
+                        </div>
+                        <div class="div-topo-titulo-esquerda">
+                            <h:panelGroup>
+                                <h:outputText value="Xxxxxxxx" styleClass="topo-titulo-cliente-pequeno"/>
+                                <br/>
+                                <h:outputText value="Xxxxxxxx xxxxx" styleClass="topo-titulo-cliente-grande"/>
+                                <br/>
+                                <h:panelGroup rendered="#{sessionControl.usuario!=null}">
+                                    <div class="div-login-local">
+                                        <h:outputText value="#{sessionControl.usuario.nome}" />
+                                        <h:outputText value=" (" />
+                                        <h:outputText value="#{sessionControl.usuario.nomeAcesso}" />
+                                        <h:outputText value=") " />
+                                        <h:outputText value=" / " />
+                                        <h:outputText value="#{sessionControl.usuario.nomeAcesso}" /> 
+                                    </div>                           
+                                </h:panelGroup>
+                            </h:panelGroup>
+                        </div>
+                        <div class="div-topo-botoes">
+                            <h:panelGroup rendered="#{sessionControl.usuario!=null}">
+                                <h:graphicImage id="contato" value="#{resource['imgpadrao/contato.png']}" onclick="PF('contato').show();" styleClass="botao-contato"/>
+                                <p:tooltip for="contato" value="Contato" showDelay="50" trackMouse="true"/>
+                                <h:graphicImage id="sobre" value="#{resource['imgpadrao/sobre.png']}" onclick="PF('sobre').show();" styleClass="botao-sobre" />
+                                <p:tooltip for="sobre" value="Sobre o Sistema" showDelay="50" trackMouse="true"/>
+                                <h:graphicImage id="ajuda" value="#{resource['imgpadrao/ajuda.png']}" onclick="PF('ajuda').show();" styleClass="botao-ajuda"/>
+                                <p:tooltip for="ajuda" value="Ajuda" showDelay="50" trackMouse="true"/>
+                                <h:commandLink action="#{loginControl.limpaSessao}">
+                                    <h:graphicImage id="sair" value="#{resource['imgpadrao/sair.png']}" rendered="#{sessionControl.usuario!=null}" title="Sair" styleClass="botao-sair"/>
+                                </h:commandLink>
+                                <p:tooltip for="sair" value="Sair" showDelay="50" trackMouse="true"/>
+                            </h:panelGroup>
+                        </div>
+                        <div class="div-topo-logo-direita">
+                            <h:graphicImage value="#{resource['icones/logo-direita.png']}"/>
+                        </div>
+                        <div class="div-topo-titulo-direita">
+                            <h:panelGroup>
+                                <h:outputText value="Sistema Xxxx" styleClass="topo-titulo-sistema"/>
+                                <br/>
+                                <h:outputText value="JXXX" styleClass="topo-codigo-sistema"/>
+                            </h:panelGroup>
+                        </div>
+                    </div> 
+                </h:form>
+            </ui:insert>       
+
+            <ui:insert name="menu">
+                <h:form>
+                    <p:menubar >
+                        <p:submenu label="&nbsp;&nbsp;Controle de Acesso&nbsp;&nbsp;&nbsp;" >
+                            <p:menuitem value="&nbsp;&nbsp;Usuários" url="/sis/usuario.xhtml" icon="icon-usuario" rendered="#{sessionControl.temPerfil('Configurador') or sessionControl.temPerfil('Administrador')}" />
+                            <p:menuitem style="width: 150px !important;" value="&nbsp;&nbsp;Trocar Senha" url="/sis/principal.xhtml?trocaSenha=true" icon="icon-troca-senha"/>
+                            <p:menuitem value="&nbsp;&nbsp;Perfis do Usuário" url="/sis/perfilUsuario.xhtml" icon="icon-usuario-perfil" rendered="#{sessionControl.temPerfil('Configurador') or sessionControl.temPerfil('Administrador')}" />
+                        </p:submenu>    
+
+                        <p:submenu label="&nbsp;&nbsp;&nbsp;Tabelas de Apoio&nbsp;&nbsp;&nbsp;" rendered="#{sessionControl.temPerfil('Visualizador')}">
+                            <p:menuitem style="width: 150px !important;" value="&nbsp;&nbsp;Tipo Propositura" url="/sis/tipoPropositura.xhtml" icon="icon-tipo-propositura" />
+                            <p:menuitem style="width: 150px !important;" value="&nbsp;&nbsp;Tipo Despacho" url="/sis/tipoDespacho.xhtml" icon="icon-usuario-perfil" />
+                            <p:menuitem style="width: 150px !important;" value="&nbsp;&nbsp;Setor" url="/sis/setor.xhtml" icon="icon-setor" />
+                            <p:menuitem style="width: 150px !important;" value="&nbsp;&nbsp;Entidades" url="/sis/configuracao.xhtml" icon="icon-configuracao" />
+                        </p:submenu>
+
+                        <p:submenu label="&nbsp;&nbsp;Cadastros&nbsp;&nbsp;" rendered="#{sessionControl.temPerfil('Visualizador')}" >
+                            <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Proposituras&nbsp;&nbsp;" url="/sis/propositura.xhtml" icon="icon-manutencao" />                                  
+                            <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Autor&nbsp;&nbsp;" url="/sis/autor.xhtml" icon="icon-autor" /> 
+                            <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Ofício&nbsp;&nbsp;" url="/sis/oficio.xhtml" icon="icon-oficio"  />  
+                        </p:submenu>
+
+                        <p:submenu label="&nbsp;&nbsp;Recebimentos&nbsp;&nbsp;" rendered="#{sessionControl.temPerfil('Executor')}" >
+                            <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Proposituras&nbsp;&nbsp;" url="/sis/recebimentosPropositura.xhtml" icon="icon-receber" />                      
+                        </p:submenu>
+
+                        <p:submenu label="&nbsp;&nbsp;Relatórios&nbsp;&nbsp;" rendered="#{sessionControl.temPerfil('Visualizador')}" >
+                            <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Encaminhamento&nbsp;" url="/sis/relEncaminhamento.xhtml" icon="icon-relatorio"  />                              
+                            <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Processo Sem Retorno&nbsp;&nbsp;" url="/sis/relProcessoSemRetorno.xhtml" icon="icon-relatorio"  />                                  
+                            <p:menuitem style="width: 190px !important;" value="&nbsp;&nbsp;Resumo de Proposições&nbsp;&nbsp;" url="/sis/relResumoProposituras.xhtml" icon="icon-relatorio"  />                             
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+            </ui:insert>
+
+
+
+            <div id="conteudo" style="min-height: 500px;">
+                <ui:insert name="conteudo">
+
+                </ui:insert>
+            </div>
+
+            <p:ajaxStatus styleClass="ajax-status">
+                <f:facet name="start">
+                    <h:graphicImage value="#{resource['imgpadrao/ajax-loader.gif']}"/>
+                    <h:outputText value="Carregando...."/>
+                </f:facet>
+                <f:facet name="complete">
+                    <h:outputText value=""/>
+                </f:facet>
+            </p:ajaxStatus>
+        </f:view>
+
+    </h:body>
+</html>
+
+

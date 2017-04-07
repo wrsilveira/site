@@ -1,0 +1,128 @@
+
+.icon-usuario{
+    background-image: url("#{resource['icones/usuario-20x20.png']}") !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.icon-setor{
+    background-image: url("#{resource['icones/setor-20x20.png']}") !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.icon-tipo-propositura{
+    background-image: url("#{resource['icones/tipo-propositura-20x20.png']}") !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.icon-autor{
+    background-image: url("#{resource['icones/autor-20x20.png']}") !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.icon-troca-senha{
+    background-image: url("#{resource['icones/troca-senha-20x20.png']}") !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.icon-perfil-acesso{
+    background-image: url("#{resource['icones/perfil-20x20.png']}") !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.icon-usuario-perfil{
+    background-image: url("#{resource['icones/usuario-perfil-20x20.png']}") !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.icon-usuario-unidade{
+    background-image: url("#{resource['icones/usuario-unidade-20x20.png']}") !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.icon-prestadora-servico{
+    background-image: url("#{resource['icones/prestadora-servico-20x20.png']}") !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.icon-relatorio{
+    background-image: url("#{resource['icones/relatorio-20x20.png']}") !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.icon-unidade{
+    height:20px !important;
+    width: 20px !important;
+    background-image: url("#{resource['icones/unidade-20x20.png']}") !important;
+}
+
+.icon-autor{
+    height:20px !important;
+    width: 20px !important;
+    background-image: url("#{resource['icones/autor-20x20.png']}") !important;
+}
+
+.icon-receber{
+    height:20px !important;
+    width: 20px !important;
+    background-image: url("#{resource['icones/receber-20x20.png']}") !important;
+}
+
+.icon-manutencao{
+    height:20px !important;
+    width: 20px !important;
+    background-image: url("#{resource['icones/manutencao-20x20.png']}") !important;
+}
+
+.icon-oficio{
+    height:20px !important;
+    width: 20px !important;
+    background-image: url("#{resource['icones/oficio-20x20.png']}") !important;
+}
+
+.icon-pesquisar{
+    height:20px !important;
+    width: 20px !important;
+    background-image: url("#{resource['icones/pesquisa-20x20.png']}") !important;
+}
+
+.icon-configuracao{
+    height:20px !important;
+    width: 20px !important;
+    background-image: url("#{resource['icones/config-20x20.png']}") !important;
+}
+
+.icon-cancelar{
+    height:20px !important;
+    width: 20px !important;
+    background-image: url("#{resource['icones/cancelar-20x20.png']}") !important;
+}
+
+.botao-add{
+    height:32px !important;
+    width: 32px !important;
+    top: 45% !important;
+    background-image: url("#{resource['imgpadrao/add-20x20.png']}") !important;
+}
+
+.botao-email{
+    height:32px !important;
+    width: 32px !important;
+    top: 45% !important;
+    background-image: url("#{resource['icones/email-20x20.png']}") !important;        
+}
+
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+    opacity: 0.80 !Important;
+}
+
+

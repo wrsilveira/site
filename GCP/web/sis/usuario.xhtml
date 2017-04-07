@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 template="./template.xhtml"
+                 xmlns:p="http://primefaces.org/ui"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:f="http://java.sun.com/jsf/core"
+                 xmlns:coderp="http://java.sun.com/jsf/composite/coderp" >
+    <ui:define name="conteudo">
+        <h:form id="formcrud">
+            <p:panel id="panelupdate" header="Controle de Acesso > Usuários > Atualizar" rendered="#{usuarioControl.status.equals('update')}" >
+                <h:panelGrid columns="2" class="espacamento-top-bot">
+                    <h:outputText value="Nome:" /><p:inputText  value="#{usuarioControl.usuario.nome}" size="60" maxlength="60" />
+                    <h:outputText value="E-Mail:" /><p:inputText value="#{usuarioControl.usuario.email}" size="50" maxlength="100"/>                 
+                    <h:outputText value="Data Alt. Senha:" />
+                    <p:inputText value="#{usuarioControl.usuario.dtAlteracaoSenha}" size="25" readonly="true" >
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </p:inputText>
+                    <h:outputText value=" " />
+                </h:panelGrid>
+                <fieldset class="espacamento-top-bot">
+                    <legend>Informações do Acesso</legend>
+                    <h:panelGrid columns="8">
+                        <h:outputText value="Identificação:" /><p:inputText value="#{usuarioControl.usuario.nomeAcesso}" maxlength="15" size="15" readonly="true"/>
+                        <h:outputText value="Ativo:" /><p:selectBooleanCheckbox value="#{usuarioControl.usuario.indicadorAtivo}"/>
+                        <h:outputText value="Alt Senha Proximo:" /><p:selectBooleanCheckbox value="#{usuarioControl.usuario.indicadorAlterarSenha}"/>
+                        <h:outputText value="Forçar Senha:" /><p:selectBooleanCheckbox value="#{usuarioControl.usuario.indicadorForcarSenha}"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="4">
+                        <h:outputText value="Tentativas Fracassadas:" /><p:inputText value="#{usuarioControl.usuario.qtdTentativasFracassadas}" size="4" readonly="true"/>
+                        <h:outputText value="Ultima Autenticação:" />
+                        <p:inputText value="#{usuarioControl.usuario.dtUltimaAutenticacao}" size="25" readonly="true" >
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                        </p:inputText>
+                    </h:panelGrid>
+                </fieldset>
+                <h:panelGrid columns="2" class="espacamento-top-bot">
+                    <h:outputText value="Data Inclusão:" />
+                    <h:outputText value="#{usuarioControl.usuario.dtInclusao}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="Usuário Inclusão" /><h:outputText value="#{usuarioControl.usuario.usuarioInclusao.nome}" />
+                    <h:outputText value="Data Atualização:" /><h:outputText value="#{usuarioControl.usuario.dtAtualizacao}" >
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="Usuário Atualização:" /><h:outputText value="#{usuarioControl.usuario.usuarioAtualizacao.nome}" />
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <p:commandButton icon="botao-update" value="&nbsp;Atualizar" action="#{usuarioControl.update}" update="@form"  />
+                    <p:commandButton icon="botao-voltar" value="&nbsp;Voltar" action="#{usuarioControl.prepareList}" update="@form" immediate="true" />
+                </h:panelGrid>
+            </p:panel>
+
+            <p:panel id="panelcreate" header="Controle de Acesso > Usuários > Novo" rendered="#{usuarioControl.status.equals('create')}">
+                <h:panelGrid columns="2" class="espacamento-top-bot">
+                    <h:outputText value="Nome:" /><p:inputText  value="#{usuarioControl.usuario.nome}" size="60" maxlength="60" />
+                    <h:outputText value="E-Mail:" /><p:inputText value="#{usuarioControl.usuario.email}" size="50" maxlength="100"/>               
+                    <h:outputText value=" " />
+                </h:panelGrid>
+                <fieldset class="espacamento-top-bot">
+                    <legend>Informações do Acesso</legend>
+                    <h:panelGrid columns="4">
+                        <h:outputText value="Identificação:" /><p:inputText value="#{usuarioControl.usuario.nomeAcesso}" maxlength="15" size="15"/>
+                        <h:outputText value="Senha:" /><p:inputText value="#{usuarioControl.usuario.senha}" maxlength="15" size="15"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="4">
+                        <h:outputText value="Ativo:" /><p:selectBooleanCheckbox value="#{usuarioControl.usuario.indicadorAtivo}"/>
+                        <h:outputText value="Alt Senha Proximo:" /><p:selectBooleanCheckbox value="#{usuarioControl.usuario.indicadorAlterarSenha}"/>
+                    </h:panelGrid>
+                </fieldset>
+                <h:panelGrid columns="2">
+                    <p:commandButton icon="botao-novo" value="&nbsp;Incluir" action="#{usuarioControl.create}" update="@form" />
+                    <p:commandButton icon="botao-voltar" value="&nbsp;Voltar" action="#{usuarioControl.prepareList}" update="@form" immediate="true" />
+                </h:panelGrid>
+            </p:panel>
+
+            <p:panel id="paneldelete" header="Controle de Acesso > Usuários > Excluir" rendered="#{usuarioControl.status.equals('delete')}">
+                <h:panelGrid columns="2" class="espacamento-top-bot">
+                    <h:outputText value="Nome:" /><p:inputText  value="#{usuarioControl.usuario.nome}" size="60" maxlength="60" readonly="true"/>
+                    <h:outputText value="E-Mail:" /><p:inputText value="#{usuarioControl.usuario.email}" size="50" maxlength="100" readonly="true"/>               
+                    <h:outputText value="Data Alt. Senha:" />
+                    <p:inputText value="#{usuarioControl.usuario.dtAlteracaoSenha}" size="25" readonly="true" >
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </p:inputText>
+                    <h:outputText value=" " />
+                </h:panelGrid>
+                <fieldset class="espacamento-top-bot">
+                    <legend>Informações do Acesso</legend>
+                    <h:panelGrid columns="8">
+                        <h:outputText value="Identificação:" /><p:inputText value="#{usuarioControl.usuario.nomeAcesso}" maxlength="15" size="15" readonly="true"/>
+                        <h:outputText value="Ativo:" /><p:selectBooleanCheckbox value="#{usuarioControl.usuario.indicadorAtivo}" disabled="true"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="4">
+                        <h:outputText value="Tentativas Fracassadas:" /><p:inputText value="#{usuarioControl.usuario.qtdTentativasFracassadas}" size="4" readonly="true"/>
+                        <h:outputText value="Ultima Autenticação:" />
+                        <p:inputText value="#{usuarioControl.usuario.dtUltimaAutenticacao}" size="25" readonly="true" >
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                        </p:inputText>
+                    </h:panelGrid>
+                </fieldset>
+                <h:panelGrid columns="2" class="espacamento-top-bot">
+                    <h:outputText value="Data Inclusão:" />
+                    <h:outputText value="#{usuarioControl.usuario.dtInclusao}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="Usuário Inclusão" /><h:outputText value="#{usuarioControl.usuario.usuarioInclusao.nome}" />
+                    <h:outputText value="Data Atualização:" /><h:outputText value="#{usuarioControl.usuario.dtInclusao}" >
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="Usuário Atualização:" /><h:outputText value="#{usuarioControl.usuario.usuarioAtualizacao.nome}" />
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Excluir" icon="botao-delete" action="#{usuarioControl.delete}" update="@form"  />
+                    <p:commandButton value="Voltar" icon="botao-voltar" action="#{usuarioControl.prepareList}" update="@form"/>
+                </h:panelGrid>
+            </p:panel>
+
+            <p:panel id="panellist" header="Controle de Acesso > Usuários > Lista" rendered="#{usuarioControl.status.equals('list')}">
+                <fieldset class="espacamento-top-bot">
+                    <legend>Filtros de Pesquisa</legend>
+                    <h:panelGrid columns="3">
+                        <h:outputText value="Nome:"/>
+                        <p:inputText value="#{usuarioControl.filtroNomeUsuario}"/>
+                        <h:outputText value=""/>                    
+                        <h:outputText value="Situação:"/>
+                        <p:selectOneMenu filter="true" value="#{usuarioControl.filtroAtivo}" converter="genericConverter">
+                            <f:selectItem itemLabel="Ativo" itemValue="true"/>
+                            <f:selectItem itemLabel="Inativo" itemValue="false"/>                        
+                        </p:selectOneMenu>                   
+                        <p:commandButton icon="botao-procurar" action="#{usuarioControl.filtro}" update="tabela" value="&nbsp;Procurar"/>
+                    </h:panelGrid>
+                </fieldset>
+                <p:dataTable id="tabela" var="item" value="#{usuarioControl.listaUsuario}"
+                             paginatorPosition="bottom" rowsPerPageTemplate="4,8,12,16,20,50"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             paginator="true" rows="8" emptyMessage="Nenhum registro encontrado!" >
+                    <p:column sortBy="#{usuarioControl.stringAtivo(item.indicadorAtivo)}" styleClass="coluna-ativo">
+                        <f:facet name="header">
+                            <h:outputText value="Ativo"/>
+                        </f:facet>
+                        <h:outputText value="#{usuarioControl.stringAtivo(item.indicadorAtivo)}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.nome}">
+                        <f:facet name="header">
+                            <h:outputText value="Nome"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nome}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.nomeAcesso}">
+                        <f:facet name="header">
+                            <h:outputText value="Identificação"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nomeAcesso}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.email}">
+                        <f:facet name="header">
+                            <h:outputText value="E-mail"/>
+                        </f:facet>
+                        <h:outputText value="#{item.email}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.dtInclusao}" styleClass="coluna-data-hora">
+                        <f:facet name="header">
+                            <h:outputText value="Inclusão"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtInclusao}">
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column styleClass="coluna-botao">
+                        <f:facet name="header">
+                            <h:outputText value=" "/>
+                        </f:facet>
+                        <p:commandLink  action="#{usuarioControl.prepareView(item)}" title="Visualizar" update="@form" >
+                            <h:graphicImage alt="DIS" value="#{resource['imgpadrao/display-20x20.png']}" />
+                        </p:commandLink>
+                    </p:column>
+                    <p:column styleClass="coluna-botao">
+                        <f:facet name="header">
+                            <h:outputText value=" "/>
+                        </f:facet>
+                        <p:commandLink  action="#{usuarioControl.prepareUpdate(item)}" title="Atualizar" update="@form" >
+                            <h:graphicImage alt="UPD" value="#{resource['imgpadrao/update-20x20.png']}" />
+                        </p:commandLink>
+                    </p:column>
+                    <p:column styleClass="coluna-botao">
+                        <f:facet name="header">
+                            <h:outputText value=" "/>
+                        </f:facet>
+                        <p:commandLink  action="#{usuarioControl.prepareDelete(item)}"  title="Excluir" update="@form" >
+                            <h:graphicImage alt="DEL" value="#{resource['imgpadrao/delete-20x20.png']}" />
+                        </p:commandLink>
+                    </p:column>
+                </p:dataTable>
+                <br/>
+                <p:commandButton value="&nbsp;Incluir" icon="botao-novo" action="#{usuarioControl.prepareCreate}" update="@form" title="Criar Novo"/>
+            </p:panel>
+
+            <p:panel id="panelview" header="Controle de Acesso > Usuários > Visualizar" rendered="#{usuarioControl.status.equals('view')}">
+                <h:panelGrid columns="2" class="espacamento-top-bot">
+                    <h:outputText value="Nome:" /><p:inputText  value="#{usuarioControl.usuario.nome}" size="60" maxlength="60" readonly="true"/>
+                    <h:outputText value="E-Mail:" /><p:inputText value="#{usuarioControl.usuario.email}" size="50" maxlength="100" readonly="true"/>
+                    <h:outputText value="Data Alt. Senha:" />
+                    <p:inputText value="#{usuarioControl.usuario.dtAlteracaoSenha}" size="25" readonly="true" >
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </p:inputText>
+                    <h:outputText value=" " />
+                </h:panelGrid>
+                <fieldset class="espacamento-top-bot">
+                    <legend>Informações do Acesso</legend>
+                    <h:panelGrid columns="8">
+                        <h:outputText value="Identificação:" /><p:inputText value="#{usuarioControl.usuario.nomeAcesso}" maxlength="15" size="15" readonly="true"/>
+                        <h:outputText value="Ativo:" /><p:selectBooleanCheckbox value="#{usuarioControl.usuario.indicadorAtivo}" disabled="true"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="4">
+                        <h:outputText value="Tentativas Fracassadas:" /><p:inputText value="#{usuarioControl.usuario.qtdTentativasFracassadas}" size="4" readonly="true"/>
+                        <h:outputText value="Ultima Autenticação:" />
+                        <p:inputText value="#{usuarioControl.usuario.dtUltimaAutenticacao}" size="25" readonly="true" >
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                        </p:inputText>
+                    </h:panelGrid>
+                </fieldset>
+                <h:panelGrid columns="2" class="espacamento-top-bot">
+                    <h:outputText value="Data Inclusão:" />
+                    <h:outputText value="#{usuarioControl.usuario.dtInclusao}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="Usuário Inclusão" /><h:outputText value="#{usuarioControl.usuario.usuarioInclusao.nome}" />
+                    <h:outputText value="Data Atualização:" /><h:outputText value="#{usuarioControl.usuario.dtAtualizacao}" >
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="Usuário Atualização:" /><h:outputText value="#{usuarioControl.usuario.usuarioAtualizacao.nome}" />
+                </h:panelGrid>
+                <h:panelGroup>
+                    <p:commandButton icon="botao-voltar" value="&nbsp;Voltar" action="#{usuarioControl.prepareList}" update="@form" immediate="true" />
+                </h:panelGroup>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

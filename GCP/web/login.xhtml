@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/sis/template.xhtml">
+
+    <ui:define name="menu"> 
+        <hr/>
+    </ui:define>
+
+    <ui:define name="conteudo">
+        <h:form>
+            <div> 
+                <p:dialog closeOnEscape="true" widgetVar="dlgEsqueceuSenha" header="Esqueceu a senha?" modal="true">
+                     <br/>
+                <h:panelGrid columns="1">
+                    <h:outputText value="Caso não consiga acessar o sistema, envie um e-mail para"/>
+                    <h:outputText value="&lt;b&gt;shirlei@coderp.com.br&lt;/b&gt; ou &lt;b&gt;wrssilva@coderp.com.br&lt;/b&gt;" escape="false"/>
+                    <h:outputText value="informando o código de sistema &lt;b&gt;J292&lt;/b&gt; e sua &lt;b&gt;Identificação&lt;/b&gt;." escape="false"/>                
+                </h:panelGrid>
+                <br/>
+                </p:dialog>
+                <p:panel styleClass="painel-login" header="Acesso ao Sistema" >
+                    <h:panelGrid width="380" columns="1">
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Identificação:"/><p:inputText value="#{loginControl.usuario.nomeAcesso}" maxlength="20" size="20" required="true" requiredMessage="Informe o Usuario"/>
+                            <h:outputText value="Senha:"/><p:password value="#{loginControl.usuario.senha}" maxlength="20" size="20" required="true" requiredMessage="Informe a Senha"/>
+                            <h:outputText value=" "/><h:outputText value=" "/>
+                            <h:outputText value=" "/><p:commandButton value="Acessar" action="#{loginControl.executarLogin}" ajax="false"/>
+                            <h:outputText value=" "/><h:outputText value=" "/>
+                            <h:outputText value=" "/><h:outputText value=" "/>
+                            <h:outputText value=" "/><p:commandButton value="Esqueceu a Senha?" oncomplete="PF('dlgEsqueceuSenha').show()" immediate="true" />
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </p:panel>
+                <br/>
+            </div>               
+        </h:form>
+
+    </ui:define>
+</ui:composition>
