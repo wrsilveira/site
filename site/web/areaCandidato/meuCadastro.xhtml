@@ -1,0 +1,105 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 template="templateAreaCandidato.xhtml"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:p="http://primefaces.org/ui"
+                 xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="conteudo">
+        <h:form id="formcrud">
+            <h:panelGroup rendered="#{meuCadastroControl.status.equals('create')}">
+                <div class="ui-fluid">                
+                    <fieldset><legend>Identificação do Candidato</legend>
+                        <p:panelGrid columns="2" columnClasses="ui-grid-col-1,ui-grid-col-11" layout="grid" >  
+                            <p:outputLabel value="CPF: *" style="text-align: right" />
+                            <p:inputMask mask="999.999.999-99" value="#{meuCadastroControl.candidato.cpf}" required="true" requiredMessage="Informe o CPF"/>  
+                            <p:outputLabel value="Nome: *" />
+                            <p:inputText  value="#{meuCadastroControl.candidato.nome}" class="ui-grid-col-5" maxlength="50" required="true" requiredMessage="Informe o Nome" />
+                            <p:outputLabel value="RG: *" />
+                            <p:inputText  value="#{meuCadastroControl.candidato.rg}" maxlength="14" required="true" requiredMessage="Informe o RG" />
+                            <p:outputLabel value="RG emitido em: * " />
+                            <p:selectOneMenu value="#{meuCadastroControl.candidato.rgUf}" required="true" requiredMessage="Informe o Estado onde o RG foi emitido">          
+                                <f:selectItem itemLabel="--" itemValue=""/>
+                                <f:selectItems value="#{meuCadastroControl.comboUF}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Data Nasc.: *" />
+                            <p:inputMask mask="99/99/9999" value="#{meuCadastroControl.candidato.dataNascimento}" maxlength="10" required="true" requiredMessage="Informe a Data de Nascimento" >
+                                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3"/>                            
+                            </p:inputMask>
+                            <p:outputLabel value="Escolaridade: * " />
+                            <p:selectOneMenu value="#{meuCadastroControl.candidato.escolaridade}" converter="genericConverter" required="true" requiredMessage="Informe a Escolaridade">
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItems value="#{meuCadastroControl.listaEscolaridade}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Estado civil: * " />
+                            <p:selectOneMenu value="#{meuCadastroControl.candidato.estadoCivil}" required="true" requiredMessage="Informe o Estado civil">
+                                <f:selectItem itemLabel="" itemValue=""/>
+                                <f:selectItem itemLabel="Casado(a)" itemValue="Casada(a)"/>                                 
+                                <f:selectItem itemLabel="Solteiro(a)" itemValue="Solteiro(a)"/>
+                                <f:selectItem itemLabel="Viúvo(a)" itemValue="Viúvo(a)"/> 
+                                <f:selectItem itemLabel="Outros" itemValue="Outros"/>                                    
+                            </p:selectOneMenu>                            
+                            <p:outputLabel value="Pessoa com deficiência?: * " />
+                            <p:selectOneMenu value="#{meuCadastroControl.candidato.indicadorPne}" 
+                                             required="true" requiredMessage="Preencha o campo É portador de deficiência?">
+                                <f:selectItem itemLabel="" itemValue=""/>                            
+                                <f:selectItem itemLabel="Não" itemValue="false"/>                            
+                                <f:selectItem itemLabel="Sim" itemValue="true"/>
+                                <p:ajax event="change" update="def deflabel"/>
+                            </p:selectOneMenu>   
+                            <h:panelGroup id="deflabel">
+                                <p:outputLabel value=" Tipo de deficiência?: * " rendered="#{meuCadastroControl.candidato.indicadorPne}"/>
+                            </h:panelGroup>
+                            <h:panelGroup id="def">
+                                <p:selectOneMenu value="#{meuCadastroControl.candidato.deficiencia}" rendered="#{meuCadastroControl.candidato.indicadorPne}" converter="genericConverter" required="true" requiredMessage="Informe o Tipo de deficiência" >
+                                    <f:selectItem itemLabel="--" itemValue=""/>
+                                    <f:selectItems value="#{meuCadastroControl.listaDeficiencia}"/>
+                                </p:selectOneMenu>  
+                            </h:panelGroup>                        
+                        </p:panelGrid>
+                    </fieldset> 
+
+                    <fieldset><legend>Contato</legend>
+                        <p:panelGrid columns="2" columnClasses="ui-grid-col-1,ui-grid-col-11" layout="grid" styleClass="ui-panelgrid-blank">                  
+                            <p:outputLabel value="Telefone Fixo: * " />
+                            <p:inputMask mask="(99) 9999-9999" value="#{meuCadastroControl.candidato.telefoneFixo}" class="ui-grid-col-2" maxlength="14" required="true" requiredMessage="Informe o Telefone Fixo"  />
+                            <p:outputLabel value="Telefone Celular: " />
+                            <p:inputMask mask="(99) 99999-9999" value="#{meuCadastroControl.candidato.telefoneCelular}" class="ui-grid-col-2" maxlength="15" required="true" requiredMessage="Informe o Telefone Celular" />
+                            <p:outputLabel value="E-mail: *" /><p:inputText  value="#{meuCadastroControl.candidato.email}" class="ui-grid-col-5" maxlength="40" required="true" requiredMessage="Informe o E-mail"  />     
+                            <p:outputLabel value="CEP: *" />
+                            <p:inputMask mask="99999-999" value="#{meuCadastroControl.candidato.cep}" maxlength="9" class="ui-grid-col-2" required="true" requiredMessage="Informe o CEP"/>                                           
+                            <p:outputLabel value="Endereço: *" />
+                            <p:panelGrid>                    
+                                <p:inputText id="endereco" value="#{meuCadastroControl.candidato.endereco}" class="ui-grid-col-4" maxlength="70" required="true" requiredMessage="Informe o Endereço"/>&#160;
+                                <p:outputLabel value="Nº: *&#160;" />
+                                <p:inputText  value="#{meuCadastroControl.candidato.numero}" size="7" maxlength="5" required="true" requiredMessage="Informe o Nº" converterMessage="Informe somente números para o campo Nº" />  
+                            </p:panelGrid>                    
+                            <p:outputLabel value="Complemento: " />
+                            <p:inputText  value="#{meuCadastroControl.candidato.complemento}" maxlength="25"  />
+                            <p:outputLabel value="Cidade: *" />
+                            <h:panelGroup>   
+                                <p:inputText id="cidade"  value="#{meuCadastroControl.candidato.cidade}" class="ui-grid-col-4" maxlength="50" required="true" requiredMessage="Informe a Cidade" />&#160;
+                                <p:outputLabel value="Estado: * "/>
+                                <p:selectOneMenu value="#{meuCadastroControl.candidato.uf}" style="top: 0px" required="true" requiredMessage="Informe o Estado">
+                                    <f:selectItem itemLabel="--" itemValue=""/>
+                                    <f:selectItems value="#{meuCadastroControl.comboUF}"/>
+                                </p:selectOneMenu>
+                            </h:panelGroup>
+                        </p:panelGrid> 
+                    </fieldset>
+
+                    <p:messages id="messages" autoUpdate="true"/>                
+
+                    <div style="margin-top: 5px;">
+                        <p:commandButton value="Gravar dados" validateClient="true" update="formcrud" action="#{meuCadastroControl.create}"/>
+                    </div>
+                </div>
+            </h:panelGroup>   
+
+            <h:panelGroup rendered="#{meuCadastroControl.status.equals('sucesso')}">
+                <p:messages id="messages-sucesso" autoUpdate="true"/>   
+            </h:panelGroup>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

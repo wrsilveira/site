@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <title>Gerenciador de Concursos</title>        
+        <h:outputStylesheet name="estilo.css" />
+    </h:head>
+
+    <h:body>
+        <f:view contentType="text/html">
+            <ui:insert name="topo">
+                <h:form style="margin-bottom: 5px;" prependId="false">
+                    <div class="div-topo">
+
+                    </div>
+                </h:form>
+            </ui:insert> 
+
+            <div id="conteudo" style="min-height: 500px;">
+                <ui:insert name="conteudo">
+
+                </ui:insert>
+            </div>
+
+            <p:ajaxStatus styleClass="ajax-status">
+                <f:facet name="start">
+                    <h:graphicImage value="#{resource['imgpadrao/ajax-loader.gif']}"/>
+                    <h:outputText value="Carregando...."/>
+                </f:facet>
+                <f:facet name="complete">
+                    <h:outputText value=""/>
+                </f:facet>
+            </p:ajaxStatus>
+        </f:view>
+    </h:body>
+</html>

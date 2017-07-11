@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 template="./template.xhtml"
+                 xmlns:p="http://primefaces.org/ui"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="conteudo">
+        <f:metadata>
+            <f:viewParam name="trocaSenha" value="#{trocaSenhaControl.trocaSenha}"/>
+        </f:metadata>
+        <h:panelGroup rendered="#{trocaSenhaControl.temQueTrocarSenha}">
+            <script type="text/javascript">
+                function init() {
+                    PF('dlgTrocaSenha').show();
+                }
+                window.onload= init;
+            </script>
+        </h:panelGroup>
+
+        <p:dialog closeOnEscape="true" widgetVar="dlgTrocaSenha" header="Controle de Acesso > Trocar senha" modal="true" rendered="#{trocaSenhaControl.temQueTrocarSenha}" closable="#{trocaSenhaControl.podeCancelarTrocaSenha}" width="500">
+            <h:form id="formcrud">
+                <h:panelGrid columns="2">
+                    <h:outputText value="Senha antiga:"/>
+                    <p:password value="#{trocaSenhaControl.senha}" size="20" maxlength="20"/>
+                    <h:outputText value="Nova senha:"/>
+                    <p:password value="#{trocaSenhaControl.novaSenha1}" size="20" maxlength="20"/>
+                    <h:outputText value="Confirma senha:"/>
+                    <p:password value="#{trocaSenhaControl.novaSenha2}" size="20" maxlength="20"/>
+                    <h:outputText value=" "/>
+                    <p:commandButton icon="botao-update" value="Atualizar"  action="#{trocaSenhaControl.update}" update="@form"/>
+                </h:panelGrid>
+                <br/>
+                <br/>
+                <h:outputText style="font-weight: bold; font-size: 10px;" value="As senhas são salvas encriptadas, não guardamos a senha em texto puro para sua segurança!"/>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>

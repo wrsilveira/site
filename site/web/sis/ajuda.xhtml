@@ -1,0 +1,362 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">        
+    <h:panelGrid columns="2" styleClass="ajuda-titulo" id="menu">
+        <h:graphicImage alt="Ajuda"  value="#{resource['imgpadrao/icone-ajuda.png']}" width="50" height="50" />
+        <h:outputText value="J001 - Gerenciador de Concursos" styleClass="recuo-pequeno" />
+    </h:panelGrid>
+
+    <h:outputLink  value="#introducao" styleClass="ajuda-topico">
+        <h:outputText value="INTRODUÇÃO" />
+    </h:outputLink>
+    <h:panelGroup layout="block" styleClass="ajuda-fundo-alterado">
+        <h:panelGrid columns="3" styleClass="ajuda-fundo-alterado-subtopicos">
+
+            <h:outputLink value="#apresentacao" styleClass="ajuda-normal-bola">
+                <h:outputText value="Apresentação" />
+            </h:outputLink>
+            <h:outputLink value="#elementosBasicos" styleClass="ajuda-normal-bola">
+                <h:outputText value="Elementos Básicos" />
+            </h:outputLink>
+            <h:outputLink value="#glossarioNegocio" styleClass="ajuda-normal-bola">
+                <h:outputText value="Glossário do Negócio" />
+            </h:outputLink>             
+        </h:panelGrid>
+    </h:panelGroup>
+    <h:outputLink value="#definicoes" styleClass="ajuda-topico">
+        <h:outputText value="DEFINIÇÕES" />
+    </h:outputLink>    
+    <h:panelGroup layout="block" styleClass="ajuda-fundo-alterado">
+        <h:panelGrid columns="3" styleClass="ajuda-fundo-alterado-subtopicos">
+            <h:outputLink value="#perfisAcesso" styleClass="ajuda-normal-bola">
+                <h:outputText value="Perfis de Acesso" />
+            </h:outputLink>                       
+            <h:outputLink>
+                <h:outputText value=" " />
+            </h:outputLink> 
+            <h:outputLink>
+            <h:outputText value=" " />
+            </h:outputLink>
+        </h:panelGrid>
+    </h:panelGroup>
+
+    <h:outputLink value="#utilizandoSistema" styleClass="ajuda-topico">
+        <h:outputText value="UTILIZANDO O SISTEMA" />
+    </h:outputLink>    
+    <h:panelGroup layout="block" styleClass="ajuda-fundo-alterado">
+        <h:panelGrid columns="3" styleClass="ajuda-fundo-alterado-subtopicos">
+            <h:outputLink value="#trocarSenha" styleClass="ajuda-normal-bola">
+                <h:outputText value="Trocar Senha" />
+            </h:outputLink>
+            <h:outputLink value="#liberarSenha" styleClass="ajuda-normal-bola">
+                <h:outputText value="Liberar Senha" />
+            </h:outputLink>
+            <h:outputLink value="#manterCadastros" styleClass="ajuda-normal-bola">
+                <h:outputText value="Manter Cadastros" />
+            </h:outputLink>             
+            <h:outputLink value="#executarRelatorios" styleClass="ajuda-normal-bola">
+                <h:outputText value="Executar Relatórios" />
+            </h:outputLink>                                     
+        </h:panelGrid>
+    </h:panelGroup>
+    <h:outputLink value="#funcoesEspecificas" styleClass="ajuda-topico">
+        <h:outputText value="FUNÇÕES ESPECÍFICAS" />
+    </h:outputLink>    
+    <h:panelGroup layout="block" styleClass="ajuda-fundo-alterado">
+        <h:panelGrid columns="3" styleClass="ajuda-fundo-alterado-subtopicos">
+            <h:outputLink value="#proposituras" styleClass="ajuda-normal-bola">
+                <h:outputText value="Cadastar Proposituras" />
+            </h:outputLink>
+            <h:outputLink value="#autor" styleClass="ajuda-normal-bola">
+                <h:outputText value="Cadastrar Autor" />
+                </h:outputLink>
+            <h:outputLink value="#oficio" styleClass="ajuda-normal-bola">
+                <h:outputText value="Gerar Oficio" />
+                </h:outputLink>
+            <h:outputLink value="#recebimento" styleClass="ajuda-normal-bola">
+                <h:outputText value="Receber Propositura" />
+                </h:outputLink>
+        </h:panelGrid>
+    </h:panelGroup>
+
+    <p:spacer height="100"/>
+    <br/>
+    <h:outputText value="INTRODUÇÃO" id="introducao" styleClass="ajuda-destaque-grande"/>
+    <br/><br/>
+    <h:outputText id="apresentacao" value="Apresentação" styleClass="ajuda-destaque-medio"/>   
+    <br/><br/>
+
+    <h:outputText value="A finalidade do sistema é permitir o cadastro de Proposições enviadas pela Câmara a Astel - Assessoria Técnica Legislativa." styleClass="ajuda-normal" />    
+    <h:outputText value="Manter proposituras, indicações e projetos de leis, seus encaminhamentos e despachos. Gerar oficio de resposta. Gerar Relatórios."  styleClass="ajuda-normal" />
+    <br/>    
+    <h:outputLink value="#menu" >
+        <h:graphicImage  name="/imgpadrao/voltar.png"/>
+    </h:outputLink>
+    <br/>
+
+    <p:spacer height="50"/>
+
+    <br/>
+    <h:outputText id="elementosBasicos" value="Elementos Básicos" styleClass="ajuda-destaque-medio"/>   
+    <br/>
+    <br/>
+    <h:graphicImage library="imgpadrao" name="incluir-20x20.gif"/>
+    <h:outputText value="&#160;&#160; Incluir"  styleClass="ajuda-destaque-pequeno" style="vertical-align: super;"/>    <br/>
+    <h:outputText value="Inclui um novo registro."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+    <h:graphicImage library="imgpadrao" name="update-20x20.png"/>
+    <h:outputText value="&#160;&#160; Atualizar"  styleClass="ajuda-destaque-pequeno" style="vertical-align: super;" />    <br/>
+    <h:outputText value="Edita um determinado registro."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+    <h:graphicImage library="imgpadrao" name="delete-20x20.png"/>
+    <h:outputText value="&#160;&#160; Excluir"  styleClass="ajuda-destaque-pequeno" style="vertical-align: super;" />    <br/>
+    <h:outputText value="Exclui um determinado registro."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+    <h:graphicImage library="imgpadrao" name="display-20x20.png"/>
+    <h:outputText value="&#160;&#160; Visualizar"  styleClass="ajuda-destaque-pequeno" style="vertical-align: super;" />    <br/>
+    <h:outputText value="Visualiza os dados de um determinado registro."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+    <h:graphicImage library="imgpadrao" name="find-20x20.png"/>
+    <h:outputText value="&#160;&#160; Procurar"  styleClass="ajuda-destaque-pequeno" style="vertical-align: super;" />    <br/>
+    <h:outputText value="Procurar registros com base nos filtros escolhidos."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+    <h:graphicImage library="imgpadrao" name="pdf-20x20.png"/>
+    <h:outputText value="&#160;&#160; Gerar Relatório"  styleClass="ajuda-destaque-pequeno" style="vertical-align: super;" />    <br/>
+    <h:outputText value="Gera relatórios em formato PDF."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+
+    <h:graphicImage library="icones" name="dispatch-20x20.png"/>
+    <h:outputText value="&#160;&#160; Incluir Despacho"  styleClass="ajuda-destaque-pequeno" style="vertical-align: super;" />    <br/>
+    <h:outputText value="Inclui Despacho a propositura."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+    <h:graphicImage library="icones" name="protocolo-20x20.png"/>
+    <h:outputText value="&#160;&#160; Protocolo"  styleClass="ajuda-destaque-pequeno" style="vertical-align: super;" />    <br/>
+    <h:outputText value="Inclui a data de protocolo do recebimento do ofício."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+    <h:graphicImage library="icones" name="printer-20x20.gif"/>
+    <h:outputText value="&#160;&#160; Imprimir Ofício"  styleClass="ajuda-destaque-pequeno" style="vertical-align: super;" />    <br/>
+    <h:outputText value="Imprime segunda via do Ofício."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+     <h:graphicImage library="icones" name="confirma-20x20.png"/>
+    <h:outputText value="&#160;&#160; Confirmar"  styleClass="ajuda-destaque-pequeno" style="vertical-align: super;" />    <br/>
+    <h:outputText value="Confirma o recebimento de propositura."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+    <h:graphicImage library="icones" name="cancelar-20x20.png"/>
+    <h:outputText value="&#160;&#160; Cancelar"  styleClass="ajuda-destaque-pequeno" style="vertical-align: super;" />    <br/>
+    <h:outputText value="Cancela o recebimento de propositura."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+
+    <h:outputLink value="#menu" >
+        <h:graphicImage  name="/imgpadrao/voltar.png"/>
+    </h:outputLink>    
+    <br/>
+    <p:spacer height="50"/>
+    <br/>    
+    <h:outputText id="glossarioNegocio" value="Glossário do Negócio" styleClass="ajuda-destaque-medio"/>   
+    <br/><br/>
+    <h:outputText value="Proposições" styleClass="ajuda-destaque-pequeno"/> <br/>      
+    <h:outputText value="Conforme a Lei Orgância do Município proposições são modalidades de projetos, requerimentos e indicações."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+    <h:outputText value="PDF" styleClass="ajuda-destaque-pequeno"/> <br/>      
+    <h:outputText value="É sigla de Portable Document Format (Formato Portável de Documento). É visualizador de arquivos criado pela Adobe Systems."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>
+    <h:outputLink value="#menu">
+        <h:graphicImage  name="/imgpadrao/voltar.png"/>
+    </h:outputLink>
+    <br/>
+    <p:spacer height="50"/>
+    <br/>
+
+    <h:outputText value="DEFINIÇÕES" id="definicoes" styleClass="ajuda-destaque-grande"/>   
+    <br/><br/>
+    <h:outputText id="perfisAcesso" value="Perfis de Acesso" styleClass="ajuda-destaque-medio"/> 
+    <br/><br/> 
+    <h:outputText value="Todo usuário do sistema possui um ou mais perfis, que definem as permissões de execução das funções do sistema. Estes perfis podem ser configurados em: Controle de Acesso > Perfis de Usuário."  styleClass="ajuda-normal" />
+    <br/>   
+    <h:outputText value="Administrador" styleClass="ajuda-destaque-pequeno"/> <br/> 
+    <h:outputText value="Perfil exclusivo da Coderp, voltado para as configurações iniciais e internas do sistema.
+                  Atribuir os perfis de acesso de Administrador ou Configurador aos usuários."  styleClass="ajuda-normal recuo-pequeno" />
+    <br/>   
+    <h:outputText value="Configurador" styleClass="ajuda-destaque-pequeno"/> <br/> 
+    <h:outputText value="
+                  Manter as Tabelas de Controle de Acesso e Apoio.
+                  Permite ativar, desativar, forçar senha (mesma  da identificação) e cancelar o usuário.
+                  Manter perfis de acesso.
+                  &lt;br/&gt;
+                  Alterar nome do Secretário do Governo e Presidente da Cãmara na impressão de 2ª via do Ofício.
+                  &lt;br/&gt;
+                  &lt;u&gt;Não permite:&lt;/u&gt;
+                  &lt;br/&gt;
+                  Incluir ou excluir o perfil de  “Configurador” de usuários."
+                  styleClass="ajuda-normal recuo-pequeno" escape="false"/>    
+    <br/>        
+    <h:outputText value="Executor" styleClass="ajuda-destaque-pequeno"/> <br/> 
+    <h:outputText value="Permite manter proposições, despachos e recebimento e gerar ofícios." styleClass="ajuda-normal recuo-pequeno" />
+    <br/>    
+    <h:outputText value="Gestor" styleClass="ajuda-destaque-pequeno"/> <br/> 
+    <h:outputText value="Manter Autor."  styleClass="ajuda-normal recuo-pequeno" />  
+    <br/>    
+    
+    <h:outputText value="Visualizador " styleClass="ajuda-destaque-pequeno"/> <br/> 
+    <h:outputText value="Visualizar informações e relatórios do sistema."  styleClass="ajuda-normal recuo-pequeno" />   
+    <br/>
+    <h:outputLink value="#menu" >
+        <h:graphicImage  name="/imgpadrao/voltar.png"/>
+   
+    </h:outputLink>
+    <br/>
+    <br/>
+    <p:spacer height="50"/>
+    <br/>
+    <h:outputText id="utilizandoSistema" value="UTILIZANDO O SISTEMA" styleClass="ajuda-destaque-grande"/> 
+    <br/><br/>
+    <h:outputText id="trocarSenha" value="Trocar Senha" styleClass="ajuda-destaque-medio"/>
+    <br/> <br/> 
+    <h:outputText value="Permite que o usuário altere a sua senha. Será solicitado a senha antiga, 
+                  a nova senha e a confirmação da nova senha. Após a alteração, o usuário deverá novamente 
+                  acessar o sistema com a nova senha." styleClass="ajuda-normal"/> 
+    <br/>
+    <h:outputLink value="#menu" >
+        <h:graphicImage  name="/imgpadrao/voltar.png"/>
+    </h:outputLink>   
+    <br/>
+    <p:spacer height="50"/>
+    <br/>
+    <h:outputText id="liberarSenha" value="Liberar Senha" styleClass="ajuda-destaque-medio"/>
+    <br/> <br/> 
+    <h:outputText value="Para os casos em que o usuário esqueceu a senha ou teve a mesma bloqueda 
+                  por excesso de tentativas incorretas (máximo 5 tentativas), o usuário pode soliciar a liberação da senha
+                  ao configurador do sistema." styleClass="ajuda-normal"/>    
+    <h:outputText value="Em Controles de Acesso > Usuário, o configurador deverá localizar o usuário cuja senha deseja 
+                  liberar e clicar no botão “Atualizar” "/> 
+    <h:graphicImage library="imgpadrao" name="update-20x20.png"/>
+    <h:outputText value="."/> 
+    <h:outputText value="Em seguida, clicar em “Alt. senha próximo”, “Forçar senha” e “Atualizar”, novamente. " styleClass="ajuda-normal"/> 
+    <h:outputText value="O usuário cuja senha foi liberada deverá acessar o sistema digitando no campo senha o mesmo nome da identificação." styleClass="ajuda-normal"/> 
+    <h:outputText value="No primeiro acesso ao sistema, o usuário será direcionado para a tela de alteração de senha." styleClass="ajuda-normal"/>
+    <br/>
+    <h:outputLink value="#menu" >
+        <h:graphicImage  name="/imgpadrao/voltar.png"/>
+    </h:outputLink>       
+    <br/>
+    <p:spacer height="50"/>
+    <br/>  
+    <h:outputText id="manterCadastros" value="Manter Cadastros" styleClass="ajuda-destaque-medio"/>
+    <br/> <br/> 
+    <h:outputText value="As telas de cadastro dos sistemas da Fábrica de Software são padronizadas 
+                  e apresentam filtros de pesquisa, listas com os itens retornados pela pesquisa, botões de visualização, atualização e 
+                  exclusão para cada item da tabela e botão para inclusão de novos registros. Cada função é disponibilizada de acordo 
+                  com o perfil do usuário." styleClass="ajuda-normal"/>  
+    <br/>
+    <h:outputLink value="#menu" >
+        <h:graphicImage  name="/imgpadrao/voltar.png"/>
+    </h:outputLink> 
+    <br/>
+    <p:spacer height="50"/>
+    <br/>  
+    <h:outputText id="executarRelatorios" value="Executar Relatórios" styleClass="ajuda-destaque-medio"/> 
+    <br/> <br/> 
+    <h:outputText value="São textos informativos com dados que expõem uma atividade ou situação. Existem vários tipos dependendo da finalidade
+                  e necessidade. Para emitir relatórios, o usuário deverá informar os filtros necessários e clicar em “Gerar Relatório”.
+                  O sistema irá gerar um arquivo PDF com as informações que encontrou mediante a 
+                  seleção feita nos filtros." styleClass="ajuda-normal"/>      
+    <h:outputText value="&lt;b&gt;Obs.:&lt;/b&gt;  A emissão dos relatórios em formato PDF permite ao usuário salvar cópias do documento e visualizá-lo independentemente 
+                  do sistema operacional." escape="false" style="font-style: italic;" styleClass="ajuda-normal"/> 
+    <br/>
+    <h:outputLink value="#menu" >
+        <h:graphicImage  name="/imgpadrao/voltar.png"/>
+    </h:outputLink> 
+    <br/>
+    <p:spacer height="50"/>
+    <br/>  
+    <h:outputText id="funcoesEspecificas" value="FUNÇÕES ESPECÍFICAS" styleClass="ajuda-destaque-grande"/>     
+    <br/><br/>   
+    <h:outputText id="proposituras" value="Cadastrar Proposituras" styleClass="ajuda-destaque-medio"/>
+    <br/>
+    <br/>
+    <h:outputText value="Para cadastrar uma nova propositura,clique em Cadastro,  Proposituras. " styleClass="ajuda-normal"/> 
+    <h:outputText value="Em seguida clicar no botão incluir " /> 
+    <h:graphicImage alt="Incluir" value="#{resource['/imgpadrao/incluir-20x20.gif']}"/>
+    <h:outputText value="." /> 
+    <br/>
+    <h:outputText value="Informe os dados, de acordo com a proposição selecionada (projeto de lei, projeto de lei complementar, requerimento e indicação. "/> 
+    <h:outputText value="O encaminhamento deve ser informado. "/> 
+    <h:outputText value="As datas de capa e fatal são incluidas pelo sistema, mas podem ser alteradas. A data de Complementação deve ser prenchida, no caso de complementação, incluindo novo encaminhamento."/> 
+    <br/> 
+    <h:outputText value="Para incluir despacho, selecione a propositura e em seguida clique no botão 'Despacho' " /> 
+    <h:graphicImage alt="Despacho" value="#{resource['/icones/dispatch-20x20.png']}"/>
+    <h:outputText value="." /> 
+    <br/>
+    
+    <br/>     
+    <h:outputLink value="#menu" >
+        <h:graphicImage  name="/imgpadrao/voltar.png"/>
+    </h:outputLink> 
+    <br/>
+    <p:spacer height="50"/>
+    <br/>  
+    <br/><br/>   
+    <h:outputText id="autor" value="Cadastrar Autor" styleClass="ajuda-destaque-medio"/>
+    <br/>
+    <br/>
+    <h:outputText value="Clique em Cadastro, Autor para a inclusão de autores das proposições." styleClass="ajuda-normal"/> 
+    <h:outputText value="Indicar se o autor pertence a legislatura atual."/> 
+    <br/> <br/>     
+    <h:outputLink value="#menu" >
+        <h:graphicImage  name="/imgpadrao/voltar.png"/>
+    </h:outputLink> 
+    <br/>
+    <p:spacer height="50"/>  
+    
+    
+    <br/><br/>   
+    <h:outputText id="oficio" value="Gerar Oficio" styleClass="ajuda-destaque-medio"/>
+    <br/>
+    <br/>
+    <h:outputText value="Após o retorno dos processos de requerimento, deverá ser enviado a Câmara Municipal oficio com cópia dos processos em anexo." styleClass="ajuda-normal"/> 
+    <h:outputText value="Clique em Cadastro,Ofícios. Clique em Incluir " /> 
+    <h:graphicImage alt="Incluir" value="#{resource['/imgpadrao/incluir-20x20.gif']}"/>
+    <h:outputText value="." /> 
+    <br/>
+    <h:outputText value="Informe a Data de Capa e o tipo de processo."/> 
+    <h:outputText value="O ofício será gerado para as proposituras da data escolhida, por autor."/> 
+  
+    <br/>
+    
+    <br/>     
+    <h:outputLink value="#menu" >
+        <h:graphicImage  name="/imgpadrao/voltar.png"/>
+    </h:outputLink> 
+    <br/>
+    <p:spacer height="50"/>
+    <br/>  
+    <br/><br/>   
+    
+    
+    <br/><br/>   
+    <h:outputText id="recebimento" value="Receber Processos" styleClass="ajuda-destaque-medio"/>
+    <br/>
+    <br/>
+    <h:outputText value="Clique em Recebimento,  Proposituras para incluir a data de retorno dos processos." styleClass="ajuda-normal"/> 
+    <h:outputText value="Selecione a propositura, através do número e ano e clique no botão 'Confirmar' " /> 
+    <h:graphicImage alt="Confirmar" value="#{resource['/icones/confirma-20x20.png']}"/>
+    <h:outputText value="." /> 
+    <br/>
+   
+    
+    <br/>     
+    <h:outputLink value="#menu" >
+        <h:graphicImage  name="/imgpadrao/voltar.png"/>
+    </h:outputLink> 
+    <br/>
+    <p:spacer height="50"/>
+    <br/>  
+    <br/><br/>   
+    
+    
+    
+
+</ui:composition>

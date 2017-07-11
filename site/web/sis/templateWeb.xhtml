@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <title>Instituto Indec</title>        
+        <h:outputStylesheet name="estilo.css" />        
+        <h:outputScript name="script.js"/>   
+    </h:head>
+
+    <h:body>
+        <f:view contentType="text/html">
+
+            <ui:insert name="cabecalho">
+                <h:form style="margin-bottom: 5px;" prependId="false">
+
+                    <div class="div-topo">
+                        <div class="div-topo-logo-esquerda">
+                            <h:graphicImage value="#{resource['icones/logo.png']}"/>
+                        </div>
+                        <div class="div-topo-titulo-esquerda">
+                            <h:panelGroup>
+                                <h:outputText value="Xxxxxxxx" styleClass="topo-titulo-cliente-pequeno"/>
+                                <h:panelGroup>
+                                    <div class="div-login-local">
+                                        <h:outputText value="aqui" />
+                                    </div>                           
+                                </h:panelGroup>
+                            </h:panelGroup>
+                        </div>
+                        <div class="div-topo-botoes">
+            
+                        </div>
+                        <div class="div-topo-logo-direita">
+  
+                        </div>
+                        <div class="div-topo-titulo-direita">
+                            <h:panelGroup>
+                                <h:outputText value="Sistema Xxxx" styleClass="topo-titulo-sistema"/>
+                            </h:panelGroup>
+                        </div>
+                    </div> 
+                </h:form>
+            </ui:insert>
+            
+            <div id="menu">
+                <ui:insert name="menu">
+
+                </ui:insert>
+            </div>
+            
+            <div id="conteudo" style="min-height: 500px;">
+                <ui:insert name="conteudo">
+
+                </ui:insert>
+            </div>
+
+        </f:view>
+
+    </h:body>
+</html>
+
+

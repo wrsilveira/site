@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"> 
+
+     <h:panelGrid columns="2" styleClass="ajuda-titulo">
+        <h:graphicImage alt="Sobre"  value="#{resource['imgpadrao/icone-sobre.png']}" width="50" height="50" />
+        <h:outputText value="J001 - Gerenciador de Concursos" styleClass="recuo-pequeno" />
+    </h:panelGrid>
+    <br/><br/>
+    
+    <h:outputText value="Desenvolvido por" styleClass="ajuda-destaque-pequeno recuo-pequeno"/><br/>    
+    <h:outputText value="William Silveira" styleClass="ajuda-normal recuo-medio"/>    
+    <br/><br/>
+    
+    <h:outputText value="Plataforma" styleClass="ajuda-destaque-pequeno recuo-pequeno"/><br/>
+    <h:outputText value="Web (Internet)" styleClass="ajuda-normal recuo-medio"/>    
+    <br/><br/>
+    
+    <h:outputText value="Linguagem de desenvolvimento" styleClass="ajuda-destaque-pequeno recuo-pequeno"/><br/>
+    <h:outputText value="Java" styleClass="ajuda-normal recuo-medio"/>    
+    <br/><br/>
+    
+    <h:outputText value="Banco de Dados" styleClass="ajuda-destaque-pequeno recuo-pequeno"/><br/>
+    <h:outputText value="PostgreSQL" styleClass="ajuda-normal recuo-medio"/>    
+    <br/><br/>
+    
+    <h:outputText value="Versão do sistema" styleClass="ajuda-destaque-pequeno recuo-pequeno"/><br/>
+    <h:outputText value="#{sessionControl.versao}" styleClass="ajuda-normal recuo-medio"/>    
+    <br/><br/>     
+    <br/>   
+
+</ui:composition>
