@@ -7,6 +7,7 @@ package br.com.gcp.controlAreaCandidato;
 
 import br.com.coderp.util.JavaUtil;
 import br.com.coderp.util.JsfUtil;
+import br.com.coderp.util.ListasUtil;
 import br.com.coderp.util.LoggerUtil;
 import br.com.gcp.model.Candidato;
 import br.com.gcp.model.Deficiencia;
@@ -18,8 +19,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -103,12 +102,9 @@ public class MeuCadastroControl implements Serializable {
         return "meuCadastro";
     }
 
-    public ArrayList<SelectItem> getComboUF() {
-        ArrayList lista = new ArrayList();
-        lista.add(new SelectItem("AC", "AC"));
-        lista.add(new SelectItem("AL", "AL"));
-        lista.add(new SelectItem("AM", "AM"));
-        lista.add(new SelectItem("TO", "TO"));
+    public List<String> getComboUF() {
+        List<String> lista = new ArrayList<String>();
+        lista = ListasUtil.LIST_ESTADOS_BRASIL;
         return lista;
     }
 

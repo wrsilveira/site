@@ -3,7 +3,8 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                template="/sis/templateWeb.xhtml">
+                template="/sis/templateWeb.xhtml"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="menu"> 
         menu
@@ -14,9 +15,11 @@
             <div>
                 <ui:repeat var="r" value="#{concursosControl.listaConcurso}">
                     <div>
-                        <h:outputText value="#{r.titulo}" style="font-size:12px; font-weight:bold !important"/>
-                        <h:outputLink value="#{r.titulo}" title="#{r.titulo}"/>
-                    </div>
+                        <h:outputLink value="informacoesconcurso.xhtml">
+                            <h:outputText value="#{r.titulo}" />
+                            <f:param name="c" value="#{r.id}" />
+                        </h:outputLink>
+                    </div>                        
                 </ui:repeat>
             </div>               
         </h:form>
