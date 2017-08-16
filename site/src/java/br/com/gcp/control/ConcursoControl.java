@@ -8,6 +8,7 @@ package br.com.gcp.control;
 import br.com.coderp.security.SessionControl;
 import br.com.coderp.util.JavaUtil;
 import br.com.coderp.util.JsfUtil;
+import br.com.coderp.util.LoggerUtil;
 import br.com.gcp.model.Cargo;
 import br.com.gcp.model.Usuario;
 import br.com.gcp.model.Concurso;
@@ -18,6 +19,10 @@ import br.com.gcp.repository.TodosConcursos;
 import br.com.gcp.repository.TodasPublicacoes;
 import br.com.gcp.repository.TodosClientes;
 import br.com.gcp.repository.TodosTiposPublicacao;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,6 +31,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -44,10 +51,12 @@ public class ConcursoControl implements Serializable {
     private Concurso concurso;
     private Cargo cargo;
     private Publicacao publicacao;
+    private UploadedFile uploadedFile;
     List<Concurso> listaConcurso = new ArrayList<Concurso>();
     List<Cargo> listaCargo = new ArrayList<Cargo>();
     List<Publicacao> listaPublicacao = new ArrayList<Publicacao>();
     List<TipoPublicacao> listaTipoPublicacao = new ArrayList<TipoPublicacao>();
+    private String dirImportacao ="C:\\Documents and Settings\\wrssilva\\Desktop\\site\\"; //"/javafiles/importacao/J256/";
 
     @EJB
     private TodosConcursos todosConcursos;
@@ -298,6 +307,32 @@ public class ConcursoControl implements Serializable {
         } catch (Exception e) {
             JsfUtil.addErrorMsg("Não foi possivel deletar a publicação!");
             return null;
+        }
+    }
+
+    public void upload(FileUploadEvent event) {
+        uploadedFile = event.getFile();
+        if (uploadedFile != null) {
+            try {
+                InputStream inputstream = uploadedFile.getInputstream();
+                FileOutputStream fos = new FileOutputStream(new File(dirImportacao + uploadedFile.getFileName()));
+                int read = 0;
+                byte[] bytes = new byte[1024];
+
+                while ((read = inputstream.read(bytes)) != -1) {
+                    fos.write(bytes, 0, read);
+                }
+                inputstream.close();
+                fos.flush();
+                fos.close();
+
+                JsfUtil.addInfoMsg("Upload completo, o arquivo " + uploadedFile.getFileName() + " foi salvo!");
+            } catch (IOException e) {
+                JsfUtil.addWarnMsg("Erro" + e.getMessage());
+            } catch (Exception e) {
+                JsfUtil.addWarnMsg("ERRO " + e.getMessage());
+                LoggerUtil.severe(this.getClass(), e);
+            }
         }
     }
 

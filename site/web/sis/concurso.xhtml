@@ -472,8 +472,15 @@
                         <f:selectItem itemLabel="--" itemValue=""/>
                         <f:selectItems value="#{concursoControl.listaTipoPublicacao}"/>
                     </p:selectOneMenu>
-
                 </h:panelGrid>
+                
+                <h:outputText value="Arquivo:" />
+                <p:fileUpload fileUploadListener="#{concursoControl.upload}" 
+                              mode="advanced" auto="true" allowTypes="/(\.|\/)(pdf|xlsx|xls|doc|docx)$/" 
+                              invalidFileMessage="Arquivo inválido. Aceito somente '.pdf'" 
+                              label="Selecione o arquivo"/>
+                <p:messages id="messages2" autoUpdate="true" closable="true" />                      
+
                 <h:panelGrid columns="2">
                     <p:commandButton icon="botao-novo" value="&nbsp;Incluir" action="#{concursoControl.createPublicacao}" update="@form" />
                     <p:commandButton icon="botao-voltar" value="&nbsp;Voltar" action="#{concursoControl.prepareListPublicacao}" update="@form" immediate="true" />
@@ -533,7 +540,7 @@
                         <f:selectItem itemLabel="--" itemValue=""/>
                         <f:selectItems value="#{concursoControl.listaTipoPublicacao}"/>
                     </p:selectOneMenu>
-                    
+
                 </h:panelGrid>
                 <h:panelGrid columns="3">
                     <p:commandButton value="Excluir" icon="botao-delete" action="#{concursoControl.deletePublicacao}" update="@form"/> &nbsp;
