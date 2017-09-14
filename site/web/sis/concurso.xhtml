@@ -468,9 +468,9 @@
                         <f:selectItems value="#{concursoControl.listaTipoPublicacao}"/>
                     </p:selectOneMenu>
                     <h:outputText value="Cargo:" />
-                    <p:selectOneMenu filter="true" value="#{concursoControl.publicacao.tipoPublicacao}" converter="genericConverter">
+                    <p:selectOneMenu filter="true" value="#{concursoControl.publicacao.cargo}" converter="genericConverter">
                         <f:selectItem itemLabel="--" itemValue=""/>
-                        <f:selectItems value="#{concursoControl.listaTipoPublicacao}"/>
+                        <f:selectItems value="#{concursoControl.listaCargo}"/>
                     </p:selectOneMenu>
                 </h:panelGrid>
                 
@@ -506,9 +506,9 @@
                         <f:selectItems value="#{concursoControl.listaTipoPublicacao}"/>
                     </p:selectOneMenu>
                     <h:outputText value="Cargo:" />
-                    <p:selectOneMenu filter="true" value="#{concursoControl.publicacao.tipoPublicacao}" converter="genericConverter">
+                    <p:selectOneMenu filter="true" value="#{concursoControl.publicacao.cargo}" converter="genericConverter">
                         <f:selectItem itemLabel="--" itemValue=""/>
-                        <f:selectItems value="#{concursoControl.listaTipoPublicacao}"/>
+                        <f:selectItems value="#{concursoControl.listaCargo}"/>
                     </p:selectOneMenu>
                 </h:panelGrid>
                 <h:panelGrid columns="2">
@@ -536,9 +536,9 @@
                         <f:selectItems value="#{concursoControl.listaTipoPublicacao}"/>
                     </p:selectOneMenu>
                     <h:outputText value="Cargo:" />
-                    <p:selectOneMenu filter="true" value="#{concursoControl.publicacao.tipoPublicacao}" converter="genericConverter" disabled="true">
+                    <p:selectOneMenu filter="true" value="#{concursoControl.publicacao.cargo}" converter="genericConverter" disabled="true">
                         <f:selectItem itemLabel="--" itemValue=""/>
-                        <f:selectItems value="#{concursoControl.listaTipoPublicacao}"/>
+                        <f:selectItems value="#{concursoControl.listaCargo}"/>
                     </p:selectOneMenu>
 
                 </h:panelGrid>

@@ -70,6 +70,9 @@ public class Publicacao implements Serializable {
     @JoinColumn(name = "id_usuario_atualizacao", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private Usuario usuarioAtualizacao;
+    @JoinColumn(name = "id_cargo", referencedColumnName = "id")
+    @ManyToOne
+    private Cargo cargo;    
 
     public Publicacao() {
     }
@@ -176,6 +179,14 @@ public class Publicacao implements Serializable {
         this.usuarioAtualizacao = usuarioAtualizacao;
     }
 
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

@@ -56,7 +56,7 @@ public class ConcursoControl implements Serializable {
     List<Cargo> listaCargo = new ArrayList<Cargo>();
     List<Publicacao> listaPublicacao = new ArrayList<Publicacao>();
     List<TipoPublicacao> listaTipoPublicacao = new ArrayList<TipoPublicacao>();
-    private String dirImportacao ="C:\\Documents and Settings\\wrssilva\\Desktop\\site\\"; //"/javafiles/importacao/J256/";
+    private String dirImportacao = "C:\\Documents and Settings\\wrssilva\\Desktop\\site\\"; //"/javafiles/importacao/J256/";
 
     @EJB
     private TodosConcursos todosConcursos;
@@ -85,6 +85,7 @@ public class ConcursoControl implements Serializable {
         publicacao = new Publicacao();
         status = "createPublicacao";
         filtroTipoPublicacao();
+        filtroCargo();
         return null;
     }
 
@@ -137,6 +138,8 @@ public class ConcursoControl implements Serializable {
 
     public String prepareUpdatePublicacao(Publicacao c) {
         publicacao = c;
+        filtroTipoPublicacao();
+        filtroPublicacao();        
         status = "updatePublicacao";
         return null;
     }
