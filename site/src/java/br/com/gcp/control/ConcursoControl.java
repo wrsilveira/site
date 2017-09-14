@@ -84,6 +84,7 @@ public class ConcursoControl implements Serializable {
     public String prepareCreatePublicacao() {
         publicacao = new Publicacao();
         status = "createPublicacao";
+        uploadedFile = null;
         filtroTipoPublicacao();
         filtroCargo();
         return null;
@@ -138,8 +139,9 @@ public class ConcursoControl implements Serializable {
 
     public String prepareUpdatePublicacao(Publicacao c) {
         publicacao = c;
+        uploadedFile = null;        
         filtroTipoPublicacao();
-        filtroPublicacao();        
+        filtroPublicacao();
         status = "updatePublicacao";
         return null;
     }
@@ -209,8 +211,10 @@ public class ConcursoControl implements Serializable {
     public String createPublicacao() {
         if (validarPublicacao()) {
             try {
-                publicacao.setLink("xxx");
-                publicacao.setIndicadorArquivo(true);
+                if (uploadedFile != null) {
+                    publicacao.setLink(uploadedFile.getFileName());
+                    publicacao.setIndicadorArquivo(true);
+                }
                 publicacao.setConcurso(concurso);
                 publicacao.setDtAtualizacao(new Date());
                 publicacao.setUsuarioAtualizacao((Usuario) sessao.getUsuario());
@@ -260,6 +264,10 @@ public class ConcursoControl implements Serializable {
     public String updatePublicacao() {
         if (validarPublicacao()) {
 
+            if (uploadedFile != null) {
+                publicacao.setLink(uploadedFile.getFileName());
+                publicacao.setIndicadorArquivo(true);
+            }
             publicacao.setDtAtualizacao(new Date());
             publicacao.setUsuarioAtualizacao((Usuario) sessao.getUsuario());
             todasPublicacoes.edit(publicacao);
